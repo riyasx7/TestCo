@@ -2,11 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const userSignUpController = require("../controller/userSignUp");
-const userSignInController = require("../controller/userSignIn");
+const userSignUpController = require("../controller/signing/userSignUp");
+const userSignInController = require("../controller/signing/userSignIn");
 const userDetailsController = require('../controller/userDetails');
 const authToken = require('../middleware/authToken');
-const userSignOutController = require("../controller/userSignOut");
+const userSignOutController = require("../controller/signing/userSignOut");
 const siteUsersDetails = require('../controller/siteUsersDetails');
 // const siteProductsDetails = require('../controller/siteProductsDetails');
 const updateUserDetails = require('../controller/updateUserDetails');
@@ -29,7 +29,7 @@ router.post("/update-User-Details",authToken,updateUserDetails);
 
 
 //test evaluator
-const testEvaluator = require("../controller/testEvaluator");
+const testEvaluator = require("../controller/test_evaluation/codeTest_evaluator_python");
 router.post("/code-test-evaluation",testEvaluator);
 
 module.exports = router;

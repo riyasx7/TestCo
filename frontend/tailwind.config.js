@@ -6,19 +6,26 @@ export default {
   theme: {
     extend: {
       textColor: {
-        DEFAULT: '#E3E3E3', // Default text color for body on dark backgrounds
-        primary: '#FFD700', // Bright primary color for headings or highlights
-        secondary: '#FFA07A', // Softer secondary color for subheadings or accents
+        DEFAULT: '#EDF2F4',    // Ivory White for general text on dark backgrounds
+        primary: '#8DA9C4',    // Teal Blue for primary highlights or headings
+        secondary: '#3A3F58',  // Charcoal for subheadings or muted text
+        success: '#3ECF8E',    // Green Mint for success messages or positive feedback
+        warning: '#FFB648',    // Amber Orange for warnings or cautionary text
+        error: '#E63946',      // Crimson Red for errors or alerts
       },
       colors: {
         myColor: {
-          DEFAULT: '#1E1E2E',  // Dark background color for UI elements
-          primary: '#FFD700',  // Bright gold as the primary highlight color
-          secondary: '#FFA07A', // Light salmon for secondary accent elements
-          dark: '#2A2A3A',      // Darker shade for navbar or footer
-          light: '#272738',     // Lighter variant for contrast in dark mode
-          extraLight: '#E3E3E3', // Light color for text or background in light mode
-          accent: '#4FD1C5',    // Teal accent for interactive elements (buttons, links)
+          DEFAULT: '#2B2D42',   // Slate Gray as the main background color for UI elements      // Darker slate gray for navbar or footer
+          primary: '#1E293B',   // Teal Blue for interactive or primary elements
+          secondary: '#2D4059', // Charcoal for card backgrounds or secondary sections
+          dark: '#111827',
+          medium: '#A0AEC0',
+          light: '#cbd5e1',     // Ivory White for text or lighter elements on dark mode
+          extraLight: '#e2e8f0',
+          accent: '#58A4B0',    // Sky Blue for hovers, borders, or selected items
+          success: '#3ECF8E',   // Green Mint for success indicators
+          warning: '#FFB648',   // Amber Orange for warnings
+          error: '#E63946',     // Crimson Red for errors
         },
       },
     },

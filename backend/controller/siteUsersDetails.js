@@ -1,4 +1,4 @@
-const userModel = require("../models/userStudentModel"); // Ensure this path is correct
+const userModel = require("../models/userModel"); // Ensure this path is correct
 
 async function siteUsersDetails(req, res) {
     try {

@@ -87,13 +87,19 @@ const SignInPage = () => {
           animate="visible"
           exit="exit"
           transition={{ duration: 0.3 }}
+          className={`flex flex-col`}
         >
           {/* SignIn Form */}
-          <h1
-            className={`${styles.montserratBold} text-2xl font-bold text-center text-myColor-primary mb-8`}
-          >
-            Welcome Back!
-          </h1>
+          <div className={`flex flex-row justify-around items-center  h-[4rem] mb-5`}>
+            <button className={`h-[80%] w-[40%] rounded-lg `}>
+              Student
+            </button>
+            <div className={`h-[50%] w-[0.5%] bg-bg-secondary`}></div>
+            <button className={`h-[80%] w-[40%] rounded-lg `}>
+              Instructor
+            </button>
+
+          </div>
           <form onSubmit={handleSignIn} className="space-y-6">
             {/* Email Field */}
             <div>

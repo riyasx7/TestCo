@@ -57,10 +57,10 @@ const CodeTest = () => {
     };
 
     return (
-        <div className="flex flex-row justify-center items-center px-4 py-0 w-screen h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-gray-200">
+        <div className="flex flex-row justify-center items-center px-4 py-0 w-screen h-screen bg-gradient-to-br from-myColor-dark to-myColor-primary text-gray-200">
             {/* Left div (Problem Statement) */}
             <div
-                className="resize-x overflow-auto h-[90%] bg-gray-800 p-6 rounded-lg border border-gray-600 hover:border-gray-500"
+                className="resize-x overflow-auto h-[90%] bg-myColor-secondary p-6 rounded-lg border border-myColor-secondary hover:border-myColor-medium"
                 style={{ minWidth: "35rem", maxWidth: "70rem", width: "60rem" }}
                 id="left-section"
             >
@@ -87,7 +87,7 @@ const CodeTest = () => {
             >
                 {/* Code editor */}
                 <div
-                    className="resize-y overflow-auto flex flex-col mb-2 p-4 bg-gray-900 rounded-lg gap-5 border border-gray-600 hover:border-gray-500"
+                    className="resize-y overflow-auto flex flex-col mb-2 p-4 bg-myColor-dark rounded-lg gap-5 border border-myColor-primary hover:border-myColor-medium"
                     style={{ minHeight: "20%", height: "50%", flexGrow: 1, flexShrink: 1 }}
                 >
                     <div className="flex justify-between items-center ">
@@ -95,7 +95,7 @@ const CodeTest = () => {
                         <div className="flex items-center">
                             <label className="mr-2 text-gray-300">Language:</label>
                             <select
-                                className="px-3 py-2 bg-gray-700 text-gray-200 rounded focus:outline-none cursor-pointer"
+                                className="px-3 py-2 bg-myColor-secondary text-gray-200 rounded focus:outline-none cursor-pointer"
                                 value={language}
                                 onChange={(e) => setLanguage(e.target.value)}
                             >
@@ -127,10 +127,10 @@ const CodeTest = () => {
                     </div>
 
                     <div className="h-[10%] flex flex-row justify-start items-center gap-5 ">
-                        <button className="h-[40px] w-[15%] bg-gray-600 text-gray-200 rounded-lg cursor-pointer hover:bg-gray-500">
+                        <button className="h-[40px] w-[15%] bg-myColor-primary text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-secondary">
                             Run
                         </button>
-                        <button className="h-[40px] w-[15%] bg-gray-600 text-gray-200 rounded-lg cursor-pointer hover:bg-gray-500" onClick={submitCode}>
+                        <button className="h-[40px] w-[15%] bg-myColor-primary text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-secondary" onClick={submitCode}>
                             Submit
                         </button>
                     </div>
@@ -141,7 +141,7 @@ const CodeTest = () => {
 
                 {/* Test cases */}
                 <div
-                    className="w-full bg-gray-800 rounded-lg p-4 overflow-y-auto border border-gray-600 hover:border-gray-500"
+                    className="w-full bg-myColor-secondary rounded-lg p-4 overflow-y-auto border border-myColor-primary hover:border-myColor-medium"
                     style={{ flexGrow: 1, flexShrink: 1, minHeight: "10rem", maxHeight: "50vh" }}
                 >
                     <h2 className="text-md font-semibold text-gray-200 mb-2">Test Cases</h2>
