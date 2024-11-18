@@ -1,92 +1,102 @@
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react"; // Include useState for loading
 import { useDispatch, useSelector } from "react-redux";
-import { setUserDetails } from "./store/userSlice.js";
-
-import "./index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { setUserDetails } from "./store/userSlice.js";
+import Context, { AppProvider } from "./context/index.jsx";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SignInPage from "./pages/initial_pages/SignInPage.jsx"
+import SignInPage from "./pages/initial_pages/SignInPage.jsx";
 import SignUpPage from "./pages/initial_pages/SignUpPage.jsx";
 import ForgotPasswordPage from "./pages/initial_pages/ForgetPasswordPage.jsx";
-import Home from "./pages/home_page/Home.jsx";
-import AdminPanel from "./pages/administrator_pages/AdminPanel.jsx";
-import SiteUsersDetails from "./pages/administrator_pages/user_management/SiteUsersDetails.jsx";
-import SingleUserDetails from "./pages/administrator_pages/user_management/SingleUserDetails.jsx";
-import summaryApi from "./common/index.js";
-import Context from "./context/index.js";
-import CodeTest from "./pages/code_test_pages/CodeTest.jsx";
+import CodingAssessment from "./pages/views/student/assessment-pages/CodingAssessment.jsx";
+import InstructorLayout from "./pages/views/instructor/InstructorLayout.jsx";
+import StudentsDetails from "./pages/views/instructor/students-details/StudentsDetails.jsx";
+import Home from "./pages/views/instructor/home/Home.jsx";
+import AssessmentsLayout from "./pages/views/instructor/assessments/AssessmentsLayout.jsx";
+import SingleStudentDetails from "./pages/views/instructor/students-details/SingleStudentDetails.jsx";
+import AddNewAssement from "./pages/views/instructor/assessments/add-assessments/AddNewAssessment.jsx";
+import AssessmentsType from "./pages/views/instructor/assessments/AssessmentsType.jsx";
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const [loading, setLoading] = useState(false); // State for loading
 
   const fetchUserDetails = async () => {
-    setLoading(true); // Set loading true
     try {
-      const response = await fetch(summaryApi.currentUser.url, {
-        method: summaryApi.currentUser.method,
+      const response = await fetch("/api/current-user", {
+        method: "GET",
         credentials: "include",
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error("Failed to fetch user details.");
 
-      const dataResponse = await response.json();
-      console.log("user_data_current: ", dataResponse);
-
-      dispatch(setUserDetails(dataResponse));
+      const data = await response.json();
+      dispatch(setUserDetails(data));
     } catch (error) {
-      toast.error("Failed to fetch user details."); // Notify error
-      console.error("Error fetching user details: ", error);
-    } finally {
-      setLoading(false); // Set loading false
+      toast.error("Failed to fetch user details.");
     }
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchUserDetails();
-    }
-  }, [isAuthenticated, dispatch]); // Include dispatch in dependencies
+    if (isAuthenticated) fetchUserDetails();
+  }, [isAuthenticated]);
 
   const location = useLocation();
-  const hideHeaderFooterRoutes = ["/sign-in", "/sign-up", "/forgot-password", "/code-test"];
-
-  const shouldHideHeaderFooter =
-    hideHeaderFooterRoutes.includes(location.pathname) ||
-    location.pathname.startsWith("/admin-panel");
+  const hideHeaderFooterRoutes = ["/sign-in", "/sign-up", "/forgot-password"];
+  const shouldHideHeaderFooter = hideHeaderFooterRoutes.includes(
+    location.pathname
+  );
 
   return (
-    <div className="min-h-screen">
-      <Context.Provider value={{ fetchUserDetails }}>
-        <ToastContainer />
-        {!shouldHideHeaderFooter && <Header />}
-        <main>
-          {loading && <p>Loading...</p>} {/* Show loading text */}
-          <Routes>
-            <Route path={"/code-test"} element={<CodeTest />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-            <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/admin-panel" element={<AdminPanel />} >
-              <Route path="site-users-details" element={<SiteUsersDetails />} />
-              <Route path="site-users-details/:userId" element={<SingleUserDetails />} />
-              {/*<Route path="site-products-details" element={<SiteProductsDetails />} />*/}
-              {/*<Route path="site-products-details/upload-new-product" element={<UploadProduct />} />*/}
+    <AppProvider>
+      <ToastContainer />
+      {/* {!shouldHideHeaderFooter && <Header />} */}
+      <main>
+        <Routes>
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/code-test" element={<CodingAssessment />} />
+
+          {/* Instructor Layout and Subroutes */}
+          <Route path="/instructor" element={<InstructorLayout />}>
+            <Route path="/instructor/home" element={<Home />} />
+
+            {/* Assessment Layout */}
+            <Route
+              path="/instructor/assessments"
+              element={<AssessmentsLayout />}
+            />
+            <Route
+              path="/instructor/assessments/add-new-assessment"
+              element={<AddNewAssement />}
+            >
+              <Route
+              path="/instructor/assessments/add-new-assessment/:assessmentType"
+              element={<AssessmentsType />}
+            />
             </Route>
-          </Routes>
-        </main>
-        {!shouldHideHeaderFooter && <Footer />}
-      </Context.Provider>
-    </div>
+            
+
+            {/* Student Details Layout */}
+            <Route
+              path="/instructor/students-details"
+              element={<StudentsDetails />}
+            />
+            <Route
+              path="/instructor/students-details/student"
+              element={<SingleStudentDetails />}
+            />
+          </Route>
+        </Routes>
+      </main>
+      {/* {!shouldHideHeaderFooter && <Footer />} */}
+    </AppProvider>
   );
-}
+};
 
 export default App;

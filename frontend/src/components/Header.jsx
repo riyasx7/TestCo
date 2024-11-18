@@ -4,7 +4,7 @@ import { styles } from "../styles";
 import { GrSearch } from "react-icons/gr";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import summaryApi from "../common";
+import backendApi from "../backendAPI";
 import { setUserDetails, clearUserDetails } from "../store/userSlice";
 import { toast } from "react-toastify";
 
@@ -30,8 +30,8 @@ const Header = () => {
 
   const handleSignOut = async () => {
     try {
-      const response = await fetch(summaryApi.signOut.url, {
-        method: summaryApi.signOut.method,
+      const response = await fetch(backendApi.signOut.url, {
+        method: backendApi.signOut.method,
         credentials: "include",
       });
 

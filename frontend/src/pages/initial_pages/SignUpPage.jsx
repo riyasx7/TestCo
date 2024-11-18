@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FaLock,
@@ -10,7 +10,7 @@ import {
 import { styles } from "../../styles";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import summaryApi from "../../common";
+import backendApi from "../../backendAPI";
 
 const SignUpPage = () => {
   const [username, setUsername] = useState("");
@@ -83,12 +83,12 @@ const SignUpPage = () => {
     // Check password strength
     setPasswordStrength(checkPasswordStrength(password));
 
-    const signupData = { username, email, password };
+    const signupData = { username, email, password, role:"student"};
     console.log("frontend: ", signupData);
     // Sending data to the backend
     try {
-      const response = await fetch(summaryApi.signUp.url, {
-        method: summaryApi.signUp.method,
+      const response = await fetch(backendApi.signUp.url, {
+        method: backendApi.signUp.method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -297,7 +297,7 @@ const SignUpPage = () => {
                     htmlFor="confirm-password"
                     className={`${styles.montserratLight} text-sm text-red-600`}
                   >
-                    Password doesn't match!
+                    Password does not match!
                   </label>
                 )}
               </div>

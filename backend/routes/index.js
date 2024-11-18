@@ -24,12 +24,19 @@ router.get("/site-users-details", authToken, siteUsersDetails);
 // router.get("/site-products-details", authToken, siteProductsDetails);
 // Edits by admin
 router.post("/update-User-Details",authToken,updateUserDetails);
-//product upload
-// router.post("/upload-new-product",uploadProductController);
 
 
-//test evaluator
-const testEvaluator = require("../controller/test_evaluation/codeTest_evaluator_python");
-router.post("/code-test-evaluation",testEvaluator);
 
+//  Instructor side
+const createCodingAssessment = require('../controller/instructor-functionalites/assessment-creation/codingAssessmentCreationController');
+router.post("/create-coding-assessment",createCodingAssessment)
+
+
+// Student side
+const codingAssessmentDataPush = require('../controller/student-functionalities/assessments/assessments-data-push/codingAssessment');
+router.get("/coding-assessment-data-pull",codingAssessmentDataPush)
+
+//  test evaluator
+const codingTestEvaluatorPython = require("../controller/student-functionalities/assessments/assessment-evaluation/codingAssessmentPython");
+router.post("/coding-assessment-evaluation",codingTestEvaluatorPython);
 module.exports = router;

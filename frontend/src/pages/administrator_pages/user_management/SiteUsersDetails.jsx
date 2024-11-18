@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import summaryApi from "../../../common";
+import backendApi from "../../../backendAPI";
 import { toast } from "react-toastify";
 import { styles } from "../../../styles";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
@@ -10,8 +10,8 @@ const SiteUsersDetails = () => {
 
   const fetchSiteUsersDetails = async () => {
     try {
-      const response = await fetch(summaryApi.siteUsersDetails.url, {
-        method: summaryApi.siteUsersDetails.method,
+      const response = await fetch(backendApi.siteUsersDetails.url, {
+        method: backendApi.siteUsersDetails.method,
         credentials: "include",
       });
       if (!response.ok) {
