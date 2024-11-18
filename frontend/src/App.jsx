@@ -20,6 +20,7 @@ import AssessmentsLayout from "./pages/views/instructor/assessments/AssessmentsL
 import SingleStudentDetails from "./pages/views/instructor/students-details/SingleStudentDetails.jsx";
 import AddNewAssement from "./pages/views/instructor/assessments/add-assessments/AddNewAssessment.jsx";
 import AssessmentsType from "./pages/views/instructor/assessments/AssessmentsType.jsx";
+import MCQAssessment from "./pages/views/student/assessment-pages/MCQAssessment.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/code-test" element={<CodingAssessment />} />
+          <Route path="/mcq-assessment" element={<MCQAssessment/>} />
 
           {/* Instructor Layout and Subroutes */}
           <Route path="/instructor" element={<InstructorLayout />}>

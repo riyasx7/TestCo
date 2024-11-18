@@ -1,36 +1,42 @@
 const assessmentModel = require("../../../../models/assessmentModel.js");
 
-async function codingAssessmentDataPull() {
+// Function to fetch assessment data from the database
+async function fetchAssessmentData() {
   try {
-    // Await the result of the find() method
-    const currentAssessment = await assessmentModel.find();
-    console.log("<<<>>>",currentAssessment);
-    return currentAssessment;
-  } catch (e) {
-    console.error("Error fetching data from DB:", e.message);
-    throw new Error(e.message || "Failed to fetch data from the database");
+    const assessments = await assessmentModel.find();
+    console.log("Fetched Assessments:", assessments);
+    return assessments;
+  } catch (error) {
+    console.error("Database fetch error:", error.message);
+    throw new Error("Failed to fetch data from the database");
   }
 }
 
+// Controller for sending assessment data to the frontend
 async function codingAssessmentDataPush(req, res) {
   try {
-    const assessmentData = await codingAssessmentDataPull();
+    const assessments = await fetchAssessmentData();
 
-    if (!assessmentData || assessmentData.length === 0) {
-      throw new Error("No assessments found in the database");
+    if (!assessments || assessments.length === 0) {
+      return res.status(404).json({
+        data: null,
+        message: "No assessments found in the database",
+        success: false,
+        error: true,
+      });
     }
 
     res.status(200).json({
-      data: assessmentData,
-      message: "Successfully pushed data to frontend!",
+      data: assessments,
+      message: "Successfully retrieved assessments",
       success: true,
       error: false,
     });
-  } catch (e) {
-    console.error("Error pushing data to frontend:", e.message);
+  } catch (error) {
+    console.error("Error pushing data to frontend:", error.message);
     res.status(500).json({
       data: null,
-      message: e.message || "An unexpected error occurred",
+      message: error.message || "An unexpected error occurred",
       success: false,
       error: true,
     });

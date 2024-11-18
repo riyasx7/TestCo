@@ -1,0 +1,427 @@
+[
+    {
+      "_id": "673ad21c0701c5df9a6afe68",
+      "assessmentType": "MCQ",
+      "title": "asfasf",
+      "description": "No description provided.",
+      "mcqQuestions": [
+        {
+          "question": "What is the capital of France?",
+          "options": [
+            { "option": "Paris", "isCorrect": true },
+            { "option": "London", "isCorrect": false },
+            { "option": "Berlin", "isCorrect": false },
+            { "option": "Rome", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which planet is known as the Red Planet?",
+          "options": [
+            { "option": "Mars", "isCorrect": true },
+            { "option": "Earth", "isCorrect": false },
+            { "option": "Jupiter", "isCorrect": false },
+            { "option": "Venus", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Who wrote 'Hamlet'?",
+          "options": [
+            { "option": "William Shakespeare", "isCorrect": true },
+            { "option": "Charles Dickens", "isCorrect": false },
+            { "option": "Jane Austen", "isCorrect": false },
+            { "option": "Mark Twain", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the largest ocean on Earth?",
+          "options": [
+            { "option": "Pacific Ocean", "isCorrect": true },
+            { "option": "Atlantic Ocean", "isCorrect": false },
+            { "option": "Indian Ocean", "isCorrect": false },
+            { "option": "Arctic Ocean", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which gas do plants absorb from the air for photosynthesis?",
+          "options": [
+            { "option": "Carbon Dioxide", "isCorrect": true },
+            { "option": "Oxygen", "isCorrect": false },
+            { "option": "Nitrogen", "isCorrect": false },
+            { "option": "Hydrogen", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the chemical symbol for gold?",
+          "options": [
+            { "option": "Au", "isCorrect": true },
+            { "option": "Ag", "isCorrect": false },
+            { "option": "Fe", "isCorrect": false },
+            { "option": "Pb", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the smallest unit of life?",
+          "options": [
+            { "option": "Cell", "isCorrect": true },
+            { "option": "Atom", "isCorrect": false },
+            { "option": "Molecule", "isCorrect": false },
+            { "option": "Organ", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which is the longest river in the world?",
+          "options": [
+            { "option": "Nile River", "isCorrect": true },
+            { "option": "Amazon River", "isCorrect": false },
+            { "option": "Yangtze River", "isCorrect": false },
+            { "option": "Mississippi River", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Who painted the Mona Lisa?",
+          "options": [
+            { "option": "Leonardo da Vinci", "isCorrect": true },
+            { "option": "Vincent van Gogh", "isCorrect": false },
+            { "option": "Pablo Picasso", "isCorrect": false },
+            { "option": "Claude Monet", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the tallest mountain in the world?",
+          "options": [
+            { "option": "Mount Everest", "isCorrect": true },
+            { "option": "K2", "isCorrect": false },
+            { "option": "Kangchenjunga", "isCorrect": false },
+            { "option": "Makalu", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Who was the first president of the United States?",
+          "options": [
+            { "option": "George Washington", "isCorrect": true },
+            { "option": "Abraham Lincoln", "isCorrect": false },
+            { "option": "Thomas Jefferson", "isCorrect": false },
+            { "option": "Theodore Roosevelt", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which element is most abundant in the Earth's atmosphere?",
+          "options": [
+            { "option": "Nitrogen", "isCorrect": true },
+            { "option": "Oxygen", "isCorrect": false },
+            { "option": "Carbon Dioxide", "isCorrect": false },
+            { "option": "Argon", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "In which year did the Titanic sink?",
+          "options": [
+            { "option": "1912", "isCorrect": true },
+            { "option": "1905", "isCorrect": false },
+            { "option": "1898", "isCorrect": false },
+            { "option": "1920", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the chemical formula for water?",
+          "options": [
+            { "option": "H2O", "isCorrect": true },
+            { "option": "O2", "isCorrect": false },
+            { "option": "CO2", "isCorrect": false },
+            { "option": "HO2", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which planet is closest to the Sun?",
+          "options": [
+            { "option": "Mercury", "isCorrect": true },
+            { "option": "Venus", "isCorrect": false },
+            { "option": "Earth", "isCorrect": false },
+            { "option": "Mars", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the main source of energy for the Earth?",
+          "options": [
+            { "option": "The Sun", "isCorrect": true },
+            { "option": "The Moon", "isCorrect": false },
+            { "option": "The Wind", "isCorrect": false },
+            { "option": "Geothermal Heat", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which country is the largest by land area?",
+          "options": [
+            { "option": "Russia", "isCorrect": true },
+            { "option": "Canada", "isCorrect": false },
+            { "option": "United States", "isCorrect": false },
+            { "option": "China", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the smallest country in the world?",
+          "options": [
+            { "option": "Vatican City", "isCorrect": true },
+            { "option": "Monaco", "isCorrect": false },
+            { "option": "San Marino", "isCorrect": false },
+            { "option": "Liechtenstein", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Who invented the telephone?",
+          "options": [
+            { "option": "Alexander Graham Bell", "isCorrect": true },
+            { "option": "Thomas Edison", "isCorrect": false },
+            { "option": "Nikola Tesla", "isCorrect": false },
+            { "option": "Michael Faraday", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which element is used to fill balloons?",
+          "options": [
+            { "option": "Helium", "isCorrect": true },
+            { "option": "Hydrogen", "isCorrect": false },
+            { "option": "Oxygen", "isCorrect": false },
+            { "option": "Nitrogen", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which country is known as the Land of the Rising Sun?",
+          "options": [
+            { "option": "Japan", "isCorrect": true },
+            { "option": "China", "isCorrect": false },
+            { "option": "Korea", "isCorrect": false },
+            { "option": "Thailand", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "What is the speed of light?",
+          "options": [
+            { "option": "299,792,458 meters per second", "isCorrect": true },
+            { "option": "150,000,000 meters per second", "isCorrect": false },
+            { "option": "100,000,000 meters per second", "isCorrect": false },
+            { "option": "3,000,000,000 meters per second", "isCorrect": false }
+          ]
+        },
+        {
+          "question": "Which famous scientist developed the theory of relativity?",
+          "options": [
+            { "option": "Albert Einstein", "isCorrect": true },
+            { "option": "Isaac Newton", "isCorrect": false },
+            { "option": "Galileo Galilei", "isCorrect": false },
+            { "option": "Nikola Tesla", "isCorrect": false }
+          ]
+        },
+            {
+              "question": "Which is the longest river in South America?",
+              "options": [
+                { "option": "Amazon River", "isCorrect": true },
+                { "option": "Nile River", "isCorrect": false },
+                { "option": "Yangtze River", "isCorrect": false },
+                { "option": "Mississippi River", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the capital of Japan?",
+              "options": [
+                { "option": "Tokyo", "isCorrect": true },
+                { "option": "Kyoto", "isCorrect": false },
+                { "option": "Osaka", "isCorrect": false },
+                { "option": "Hiroshima", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which is the largest planet in the solar system?",
+              "options": [
+                { "option": "Jupiter", "isCorrect": true },
+                { "option": "Saturn", "isCorrect": false },
+                { "option": "Uranus", "isCorrect": false },
+                { "option": "Neptune", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Who was the first woman to win a Nobel Prize?",
+              "options": [
+                { "option": "Marie Curie", "isCorrect": true },
+                { "option": "Rosalind Franklin", "isCorrect": false },
+                { "option": "Ada Lovelace", "isCorrect": false },
+                { "option": "Florence Nightingale", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the hardest natural substance on Earth?",
+              "options": [
+                { "option": "Diamond", "isCorrect": true },
+                { "option": "Gold", "isCorrect": false },
+                { "option": "Iron", "isCorrect": false },
+                { "option": "Platinum", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Who developed the theory of evolution?",
+              "options": [
+                { "option": "Charles Darwin", "isCorrect": true },
+                { "option": "Gregor Mendel", "isCorrect": false },
+                { "option": "Louis Pasteur", "isCorrect": false },
+                { "option": "Isaac Newton", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the capital of Canada?",
+              "options": [
+                { "option": "Ottawa", "isCorrect": true },
+                { "option": "Toronto", "isCorrect": false },
+                { "option": "Vancouver", "isCorrect": false },
+                { "option": "Montreal", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the name of the largest desert in the world?",
+              "options": [
+                { "option": "Sahara Desert", "isCorrect": false },
+                { "option": "Arabian Desert", "isCorrect": false },
+                { "option": "Antarctic Desert", "isCorrect": true },
+                { "option": "Kalahari Desert", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which language is spoken in Brazil?",
+              "options": [
+                { "option": "Portuguese", "isCorrect": true },
+                { "option": "Spanish", "isCorrect": false },
+                { "option": "English", "isCorrect": false },
+                { "option": "French", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the tallest building in the world?",
+              "options": [
+                { "option": "Burj Khalifa", "isCorrect": true },
+                { "option": "Shanghai Tower", "isCorrect": false },
+                { "option": "One World Trade Center", "isCorrect": false },
+                { "option": "Eiffel Tower", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which country is the birthplace of pizza?",
+              "options": [
+                { "option": "Italy", "isCorrect": true },
+                { "option": "France", "isCorrect": false },
+                { "option": "Greece", "isCorrect": false },
+                { "option": "United States", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the currency of Japan?",
+              "options": [
+                { "option": "Yen", "isCorrect": true },
+                { "option": "Won", "isCorrect": false },
+                { "option": "Rupee", "isCorrect": false },
+                { "option": "Peso", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which vitamin is known as the sunshine vitamin?",
+              "options": [
+                { "option": "Vitamin D", "isCorrect": true },
+                { "option": "Vitamin C", "isCorrect": false },
+                { "option": "Vitamin A", "isCorrect": false },
+                { "option": "Vitamin E", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the smallest continent in the world?",
+              "options": [
+                { "option": "Australia", "isCorrect": true },
+                { "option": "Europe", "isCorrect": false },
+                { "option": "Antarctica", "isCorrect": false },
+                { "option": "South America", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Who was the first man to walk on the Moon?",
+              "options": [
+                { "option": "Neil Armstrong", "isCorrect": true },
+                { "option": "Buzz Aldrin", "isCorrect": false },
+                { "option": "Yuri Gagarin", "isCorrect": false },
+                { "option": "John Glenn", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which instrument is used to measure temperature?",
+              "options": [
+                { "option": "Thermometer", "isCorrect": true },
+                { "option": "Barometer", "isCorrect": false },
+                { "option": "Hygrometer", "isCorrect": false },
+                { "option": "Altimeter", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the largest island in the world?",
+              "options": [
+                { "option": "Greenland", "isCorrect": true },
+                { "option": "Australia", "isCorrect": false },
+                { "option": "New Guinea", "isCorrect": false },
+                { "option": "Borneo", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the chemical formula for methane?",
+              "options": [
+                { "option": "CH4", "isCorrect": true },
+                { "option": "CO2", "isCorrect": false },
+                { "option": "C2H6", "isCorrect": false },
+                { "option": "C3H8", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which is the longest mountain range in the world?",
+              "options": [
+                { "option": "Andes", "isCorrect": true },
+                { "option": "Himalayas", "isCorrect": false },
+                { "option": "Rocky Mountains", "isCorrect": false },
+                { "option": "Alps", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which country is famous for its pyramids?",
+              "options": [
+                { "option": "Egypt", "isCorrect": true },
+                { "option": "Mexico", "isCorrect": false },
+                { "option": "China", "isCorrect": false },
+                { "option": "Greece", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the process by which plants make their food?",
+              "options": [
+                { "option": "Photosynthesis", "isCorrect": true },
+                { "option": "Respiration", "isCorrect": false },
+                { "option": "Fermentation", "isCorrect": false },
+                { "option": "Transpiration", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "Which animal is known as the King of the Jungle?",
+              "options": [
+                { "option": "Lion", "isCorrect": true },
+                { "option": "Elephant", "isCorrect": false },
+                { "option": "Tiger", "isCorrect": false },
+                { "option": "Giraffe", "isCorrect": false }
+              ]
+            },
+            {
+              "question": "What is the national flower of Japan?",
+              "options": [
+                { "option": "Cherry Blossom", "isCorrect": true },
+                { "option": "Rose", "isCorrect": false },
+                { "option": "Lotus", "isCorrect": false },
+                { "option": "Tulip", "isCorrect": false }
+              ]
+            }
+          ]
+          
+      
+      
+    }
+]

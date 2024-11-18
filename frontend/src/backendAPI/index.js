@@ -41,16 +41,37 @@ const backendApi = {
     method: "POST",
   },
 
+  createMCQAssessment:{
+    url: `${backendDomain}/api/create-coding-assessment`,
+    method: "POST",
+  },
+
   codingAssessmentDataPull: {
     url: `${backendDomain}/api/coding-assessment-data-pull`,
     method: "GET",
   },
 
-  // STUDENT SIDE
+  mcqAssessmentDataPull: {
+    url: `${backendDomain}/api/mcq-assessment-data-pull`,
+    method: "GET",
+  },
+  
+
+  //  STUDENT SIDE
+
+  //      coding assessment evaluation
   codingAssessmentEvaluation: {
     url: `${backendDomain}/api/coding-assessment-evaluation`,
     method: "POST",
   },
+
+  //      mcq assessment evaluation
+  mcqAssessmentEvaluation: {
+    url: `${backendDomain}/api/mcq-assessment-evaluation`,
+    method: "POST",
+  }
+
+  
 };
 
 export default backendApi;

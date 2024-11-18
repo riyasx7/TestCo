@@ -3,71 +3,65 @@ const assessmentModel = require("../../../models/assessmentModel");
 async function createAssessment(req, res) {
   try {
     const { assessmentType, title, numQuestions, questions, description } = req.body;
-    console.log("Received payload:");
-    console.log(req.body);
+
+    console.log("Received payload:", req.body);
 
     // Validate required fields
-    if (
-      !assessmentType ||
-      !title ||
-      !numQuestions ||
-      !questions ||
-      questions.length !== numQuestions
-    ) {
-      return res
-        .status(400)
-        .json({ message: "Invalid data, please check the form." });
+    if (!assessmentType || !title || !questions || !Array.isArray(questions)) {
+      return res.status(400).json({ message: "Invalid data, please check the form." });
     }
 
+    if (questions.length !== numQuestions) {
+      return res.status(400).json({ message: "Number of questions mismatch." });
+    }
+
+    // Initialize assessment data
     let newAssessmentData = {
       assessmentType,
       title,
-      description, // Optional
+      description: description || "No description provided.",
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-    console.log("Empty assessment data created");
 
-    // Handle MCQ questions
+    // Handle MCQ assessments
     if (assessmentType === "MCQ") {
-      if (!Array.isArray(questions)) {
-        return res.status(400).json({ message: "Questions should be an array." });
-      }
-
       const mcqQuestions = questions.map((q) => {
-        if (!q.question || !q.options || q.options.length === 0) {
-          throw new Error("Each MCQ must have a question and options.");
+        if (!q.question || !Array.isArray(q.options) || q.options.length === 0) {
+          throw new Error("Each MCQ must have a question and at least one option.");
         }
 
+        // Validate options
         const options = q.options.map((option) => {
-          if (!option.option || typeof option.isCorrect !== 'boolean') {
+          if (!option.option || typeof option.isCorrect !== "boolean") {
             throw new Error("Each option must have text and a correctness flag.");
           }
 
           return {
-            option: option.option,
+            option: option.option, // Align field name with schema
             isCorrect: option.isCorrect,
           };
         });
 
+        // Ensure at least one correct option
+        if (!options.some((opt) => opt.isCorrect)) {
+          throw new Error("Each MCQ must have at least one correct option.");
+        }
+
         return {
           question: q.question,
-          options: options,
+          options,
         };
       });
 
-      newAssessmentData.mcqQuestions = mcqQuestions; // Only set for MCQ
+      newAssessmentData.mcqQuestions = mcqQuestions; // Add MCQ-specific data
     }
 
     // Handle Coding assessments
-    if (assessmentType === "Coding") {
-      if (!Array.isArray(questions)) {
-        return res.status(400).json({ message: "Questions should be an array." });
-      }
-
+    else if (assessmentType === "Coding") {
       const codingAssessments = questions.map((q) => {
         if (!q.problemStatement || !Array.isArray(q.testCases) || q.testCases.length === 0) {
-          throw new Error("Each coding question must have a problem statement and test cases.");
+          throw new Error("Each coding question must have a problem statement and at least one test case.");
         }
 
         const testCases = q.testCases.map((testCase) => {
@@ -83,12 +77,13 @@ async function createAssessment(req, res) {
 
         return {
           problemStatement: q.problemStatement,
-          testCases: testCases,
+          testCases,
         };
       });
 
-      newAssessmentData.codingAssessments = codingAssessments; // Only set for Coding
-      console.log("Coding assessment data filled");
+      newAssessmentData.codingAssessments = codingAssessments; // Add Coding-specific data
+    } else {
+      return res.status(400).json({ message: "Invalid assessment type. Use 'MCQ' or 'Coding'." });
     }
 
     // Create a new assessment object
@@ -100,7 +95,10 @@ async function createAssessment(req, res) {
     console.log("Assessment saved");
 
     // Return the saved assessment
-    return res.status(201).json(savedAssessment);
+    return res.status(201).json({
+      message: "Assessment created successfully.",
+      assessment: savedAssessment,
+    });
   } catch (error) {
     console.error("Error creating assessment:", error.message || error);
     return res.status(500).json({
