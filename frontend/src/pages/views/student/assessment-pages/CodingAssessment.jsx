@@ -223,7 +223,7 @@ const CodingAssessment = () => {
 
           {/* Test Cases */}
           <div
-      className="w-full bg-myColor-primary rounded-lg px-4 overflow-y-auto border border-myColor-secondary hover:border-myColor-medium"
+      className="w-full bg-myColor-primary rounded-lg px-4  border border-myColor-secondary hover:border-myColor-medium"
       style={{
         flexGrow: 1,
         minHeight: "10rem",
@@ -266,7 +266,8 @@ const CodingAssessment = () => {
           <p>Status: {}</p>
           </div>
           
-          {/* Inputs Section */}
+          <div className="overflow-y-auto scrollbar-hide h-[26vh]">
+            {/* Inputs Section */}
           <div className="py-3 flex flex-col gap-2">
             <label htmlFor="inputs" className="text-sm font-semibold">
               Inputs
@@ -296,6 +297,22 @@ const CodingAssessment = () => {
                 }
               </pre>
             </div>
+          </div>
+
+          <div className="py-3 flex flex-col gap-2">
+            <label htmlFor="expectedOutput" className="text-sm font-semibold">
+              Actual Output
+            </label>
+            <div className="h-[3rem] flex justify-start items-center rounded-lg bg-myColor-extraLight p-2" id="expectedOutput">
+              <pre className="text-myColor-dark text-sm">
+                {/* {
+                  assessmentData[currentQuestionNumber - 1].testCases[
+                    CurrentTestCaseNumber - 1
+                  ]?.expectedOutput
+                } */} acutal output
+              </pre>
+            </div>
+          </div>
           </div>
         </div>
       ) : (
