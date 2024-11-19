@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    // Ensure this includes all your component files (e.g., `src/**/*.{html,js,jsx,ts,tsx}`)
+    "./src/**/*.{js,jsx,ts,tsx}", // Include all your component files
   ],
   theme: {
     extend: {
@@ -21,8 +20,8 @@ export default {
           secondary: '#2D4059', // Charcoal for card backgrounds or secondary sections
           dark: '#111827',
           medium: '#A0AEC0',
-          light: '#cbd5e1',     // Ivory White for text or lighter elements on dark mode
-          extraLight: '#e2e8f0',
+          light: '#CBD5E1',     // Ivory White for text or lighter elements on dark mode
+          extraLight: '#E2E8F0',
           accent: '#58A4B0',    // Sky Blue for hovers, borders, or selected items
           go: '#047857',        // Green Mint for success indicators
           success: '#065F46',
@@ -30,9 +29,18 @@ export default {
           error: '#E63946',     // Crimson Red for errors
         },
       },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+      },
+      animation: {
+        float: 'float 3s ease-in-out infinite', // Custom animation for floating elements
+      },
     },
   },
   plugins: [
     require('tailwind-scrollbar-hide'), // Hides the scrollbar
   ],
-}
+};

@@ -22,6 +22,7 @@ import SingleStudentDetails from "./pages/views/instructor/students-details/Sing
 import AddNewAssement from "./pages/views/instructor/assessments/add-assessments/AddNewAssessment.jsx";
 import AssessmentsType from "./pages/views/instructor/assessments/AssessmentsType.jsx";
 import MCQAssessment from "./pages/views/student/assessment-pages/MCQAssessment.jsx";
+import PageNotFoundError from "./PageNotFoundError.jsx";
 
 
 const App = () => {
@@ -60,7 +61,7 @@ const App = () => {
       {/* {!shouldHideHeaderFooter && <Header />} */}
       <main>
         <Routes>
-          <Route path="/" element={<HomePage/>}/>
+          <Route path="/" element={<PageNotFoundError/>}/>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />

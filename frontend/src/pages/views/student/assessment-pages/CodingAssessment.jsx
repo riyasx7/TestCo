@@ -10,6 +10,8 @@ import { keymap } from "@codemirror/view";
 import { defaultKeymap } from "@codemirror/commands";
 
 import backendApi from "../../../../backendAPI/index.js";
+import { fadeIn } from "../../../../utils/motion.js";
+import { motion } from "framer-motion";
 
 const CodingAssessment = () => {
   const [code, setCode] = useState("# Write your code here");
@@ -98,10 +100,15 @@ const CodingAssessment = () => {
   return (
     <div className="flex flex-row gap-2 px-3 py-4 h-[100vh] w-[100vw] bg-myColor-dark">
       {/* Left Sidebar (problem statement) */}
-      <div className="w-[5%] sm:w-[3%] md:w-[3%] lg:w-[4%] rounded-lg p-1 bg-myColor-light flex flex-col justify-start items-center gap-1">
+      <div className="w-[4%] sm:w-[3%] md:w-[3%] lg:w-[3%] rounded-lg p-1 bg-myColor-light flex flex-col justify-start items-center gap-1">
         {assessmentData?.length > 0 ? (
           assessmentData.map((assessment, index) => (
-            <button
+            <motion.button
+              variants={fadeIn("center", "", 0.25, 0.25)}
+              whileHover={{ scale: 1.005 }}
+              whileTap={{ scale: 0.95 }}
+              initial="hidden"
+              animate="show"
               key={index}
               className={`w-[80%] md:w-[80%] lg:w-[90%] aspect-square flex justify-center items-center text-white rounded-lg cursor-pointer hover:bg-myColor-dark
           ${
@@ -112,7 +119,7 @@ const CodingAssessment = () => {
               onClick={() => setCurrentQuestionNumber(index + 1)}
             >
               <p className="text-sm lg:text-base">{index + 1}</p>
-            </button>
+            </motion.button>
           ))
         ) : (
           <p className="aspect-square flex justify-center items-center text-white bg-myColor-secondary rounded-lg cursor-pointer hover:bg-myColor-dark">
@@ -174,9 +181,9 @@ const CodingAssessment = () => {
                   Code Editor
                 </h1>
                 <div className="flex flex-row items-center gap-2">
-                  <label className="mr-4 text-gray-300">Language:</label>
+                  <label className="mr-4 text-myColor-medium">Language:</label>
                   <select
-                    className="px-3 py-2 bg-myColor-medium text-myColor-dark rounded-lg focus:outline-none cursor-pointer hover:bg-myColor-light"
+                    className="px-3 py-2 bg-myColor-light text-myColor-dark rounded-lg focus:outline-none cursor-pointer hover:bg-myColor-extraLight"
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                   >
@@ -184,7 +191,7 @@ const CodingAssessment = () => {
                       <option
                         key={value}
                         value={value}
-                        className="bg-gray-700 text-gray-200"
+                        className="bg-myColor-light hover:bg-myColor-light text-myColor-dark cursor-pointer"
                       >
                         {name}
                       </option>
@@ -195,8 +202,7 @@ const CodingAssessment = () => {
 
               <div
                 className="rounded-lg overflow-scroll custom-scrollbar bg-gray-800 border border-gray-600"
-                style={{ height: "80%",  width: "100%" }}
-
+                style={{ height: "80%", width: "100%" }}
               >
                 <CodeMirror
                   value={code}
@@ -212,43 +218,63 @@ const CodingAssessment = () => {
               </div>
 
               <div className="flex flex-row justify-start items-center gap-2 h-[10%]">
-                <button className="h-[5vh] sm:h-[25px] sm:w-[15%] md:h-[40px] w-[30%] md:w-[15%] bg-myColor-secondary text-sm text-md  text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-go hover:text-myColor-white">
+                <motion.button
+                  variants={fadeIn("center", "", 0.25, 0.25)}
+                  whileHover={{ scale: 1.005 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial="hidden"
+                  animate="show"
+                  className="h-[5vh] sm:h-[25px] sm:w-[15%] md:h-[40px] w-[30%] md:w-[15%] bg-myColor-secondary text-sm text-md  text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-go hover:text-myColor-white"
+                >
                   Run
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  variants={fadeIn("center", "", 0.25, 0.25)}
+                  whileHover={{ scale: 1.005 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial="hidden"
+                  animate="show"
                   className="h-[5vh] sm:h-[25px] sm:w-[15%] md:h-[40px] w-[30%] md:w-[15%] bg-myColor-secondary text-gray-200 text-sm text-md rounded-lg cursor-pointer hover:bg-myColor-success hover:text-myColor-white"
                   onClick={submitCode}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
 
           {/* Test Cases */}
           <div
-  className="
+            className="
     w-full 
     bg-myColor-primary 
     rounded-lg 
-    px-4  
+    p-2  
     border border-myColor-secondary 
     hover:border-myColor-medium
     h-[55%] sm:h-[45%] md:h-[40%] lg:h-[30%]
   "
-  style={{
-    flexGrow: 2,
-    maxHeight: "55%",
-  }}
->
-  <div className="h-[4rem] w-full flex flex-row justify-between items-center p-1">
-    <h2 className="text-gray-200 text-lg font-semibold">Test Cases</h2>
-    <div className="flex flex-row gap-2 w-[5%]">
-      {assessmentData?.[currentQuestionNumber - 1]?.testCases?.map((_, index) => (
-        <button
-          key={index}
-          className={`
+            style={{
+              flexGrow: 2,
+              maxHeight: "55%",
+            }}
+          >
+            <div className="h-[4rem] w-full flex flex-row justify-between items-center p-1">
+              <h2 className="text-gray-200 text-lg font-semibold">
+                Test Cases
+              </h2>
+              <div className="flex flex-row gap-2 w-[5%]">
+                {assessmentData?.[currentQuestionNumber - 1]?.testCases?.map(
+                  (_, index) => (
+                    <motion.button
+              variants={fadeIn("center", "", 0.25, 0.25)}
+              whileHover={{scale: 1.005}}
+              whileTap={{scale: 0.95}}
+              initial="hidden"
+              animate="show"
+                      key={index}
+                      className={`
             flex 
             justify-center 
             items-center 
@@ -264,16 +290,17 @@ const CodingAssessment = () => {
             w-full
             h-[40px] sm:h-[35px] md:h-[40px] lg:h-[40px]
           `}
-          onClick={() => setCurrentTestCaseNumber(index + 1)}
-        >
-          <p>{index + 1}</p>
-        </button>
-      ))}
-    </div>
-  </div>
-  <div
-    id="test-case-container"
-    className="
+                      onClick={() => setCurrentTestCaseNumber(index + 1)}
+                    >
+                      <p>{index + 1}</p>
+                    </motion.button>
+                  )
+                )}
+              </div>
+            </div>
+            <div
+              id="test-case-container"
+              className="
       overflow-auto scrollbar-hide
       p-4 
       w-full 
@@ -281,45 +308,57 @@ const CodingAssessment = () => {
       bg-myColor-dark 
       flex flex-col 
       gap-2 
-      lg:h-[calc(100%-5rem)] sm:h-[calc(90%-4rem)] md:h-[85%] 
+      lg:h-[calc(100%-4rem)] sm:h-[calc(90%-4rem)] md:h-[85%] 
     "
-  >
-    <div className="flex flex-row justify-between items-center pb-2 border-b border-b-myColor-medium">
-      <p>Test Case {CurrentTestCaseNumber}</p>
-      <p>Status:</p>
-    </div>
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-col gap-1">
-        <label htmlFor="test-case-inputs">Inputs</label>
-        <div
-          id="test-case-inputs"
-          className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
-        >
-          <pre>inputs</pre>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="test-case-expected-outputs">Expected Output</label>
-        <div
-          id="test-case-expected-outputs"
-          className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
-        >
-          <pre>expected output</pre>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="test-case-actual-output">Actual Output</label>
-        <div
-          id="test-case-actual-output"
-          className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
-        >
-          <pre>actual output</pre>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+            >
+              <div className="flex flex-row justify-between items-center pb-2 border-b border-b-myColor-medium">
+                <p>Test Case {CurrentTestCaseNumber}</p>
+                <p>Status:</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="test-case-inputs">Inputs</label>
+                  <div
+                    id="test-case-inputs"
+                    className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
+                  >
+                    <pre>
+                      {
+                        assessmentData?.[currentQuestionNumber - 1]
+                          ?.testCases?.[CurrentTestCaseNumber - 1].input
+                      }
+                    </pre>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="test-case-expected-outputs">
+                    Expected Output
+                  </label>
+                  <div
+                    id="test-case-expected-outputs"
+                    className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
+                  >
+                    <pre>
+                      {
+                        assessmentData?.[currentQuestionNumber - 1]
+                          ?.testCases?.[CurrentTestCaseNumber - 1]
+                          .expectedOutput
+                      }
+                    </pre>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="test-case-actual-output">Actual Output</label>
+                  <div
+                    id="test-case-actual-output"
+                    className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
+                  >
+                    <pre>actual output</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

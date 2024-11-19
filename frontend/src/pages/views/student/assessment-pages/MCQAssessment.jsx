@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import backendApi from "../../../../backendAPI/index.js";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../../utils/motion.js";
 
 const MCQAssessment = () => {
   const [assessmentData, setAssessmentData] = useState([]);
@@ -86,34 +88,37 @@ const MCQAssessment = () => {
 
   return (
     <div className="flex flex-row gap-2 p-4 h-screen w-screen bg-myColor-dark">
-  {/* Left Sidebar (questions navigation) */}
-  <div className="w-[3rem] rounded-lg p-1 bg-myColor-light flex flex-col gap-1 overflow-auto scrollbar-hide">
-    {assessmentData.length > 0 ? (
-      assessmentData.map((_, index) => (
-        <button
-          key={index}
-          className={`w-full flex justify-center items-center text-white rounded-lg cursor-pointer hover:bg-myColor-dark ${
-            currentQuestionNumber - 1 === index
-              ? "bg-myColor-dark"
-              : "bg-myColor-secondary"
-          }`}
-          style={{
-            height: `20vh`, // Makes each button take up an equal share of the sidebar's height
-            aspectRatio: '1', // Ensures the button is square
-          }}
-          onClick={() => setCurrentQuestionNumber(index + 1)}
-        >
-          <p>{index + 1}</p>
-        </button>
-      ))
-    ) : (
-      <p className="w-full h-full flex justify-center items-center text-white bg-myColor-secondary rounded-lg cursor-pointer hover:bg-myColor-dark">
-        nil
-      </p>
-    )}
-  </div>
-
-
+      {/* Left Sidebar (questions navigation) */}
+      <div className="w-[3rem] rounded-lg p-1 bg-myColor-light flex flex-col gap-1 overflow-auto scrollbar-hide">
+        {assessmentData.length > 0 ? (
+          assessmentData.map((_, index) => (
+            <motion.button
+              variants={fadeIn("center", "", 0.25, 0.25)}
+              whileHover={{ scale: 1.005 }}
+              whileTap={{ scale: 0.95 }}
+              initial="hidden"
+              animate="show"
+              key={index}
+              className={`w-full flex justify-center items-center text-white rounded-lg cursor-pointer hover:bg-myColor-dark ${
+                currentQuestionNumber - 1 === index
+                  ? "bg-myColor-dark"
+                  : "bg-myColor-secondary"
+              }`}
+              style={{
+                height: `20vh`, // Makes each button take up an equal share of the sidebar's height
+                aspectRatio: "1", // Ensures the button is square
+              }}
+              onClick={() => setCurrentQuestionNumber(index + 1)}
+            >
+              <p>{index + 1}</p>
+            </motion.button>
+          ))
+        ) : (
+          <p className="w-full h-full flex justify-center items-center text-white bg-myColor-secondary rounded-lg cursor-pointer hover:bg-myColor-dark">
+            nil
+          </p>
+        )}
+      </div>
 
       {/* Main Content Area */}
       <div className="flex flex-col justify-center items-center gap-2 w-full h-full bg-myColor-dark text-gray-200 overflow-hidden">
@@ -159,13 +164,15 @@ const MCQAssessment = () => {
               </div>
 
               {/* Options Section */}
-              <div className="flex flex-col  h-full min-w-[25%] gap-6 p-2 bg-myColor-primary rounded-lg border border-myColor-secondary hover:border-myColor-medium shadow-lg"
-              style={{
+              <div
+                className="flex flex-col  h-full min-w-[25%] gap-6 p-2 bg-myColor-primary rounded-lg border border-myColor-secondary hover:border-myColor-medium shadow-lg"
+                style={{
                   minWidth: "35%",
                   maxWidth: "75%",
                   width: "50%",
-                  flexGrow: 2
-                }}>
+                  flexGrow: 2,
+                }}
+              >
                 <div className="h-full p-4 flex flex-col justify-start gap-5 bg-myColor-dark text-white rounded-lg border border-myColor-secondary">
                   {/* Section Heading */}
                   <h3 className="text-xl  text-gray-200 border-b border-myColor-medium pb-2">
@@ -178,7 +185,12 @@ const MCQAssessment = () => {
                       {assessmentData[currentQuestionNumber - 1]?.options.map(
                         (option, index) => (
                           <li key={index} className="w-full">
-                            <label
+                            <motion.label
+                              variants={fadeIn("center", "", 0.25, 0.25)}
+                              whileHover={{ scale: 1.005 }}
+                              whileTap={{ scale: 0.95 }}
+                              initial="hidden"
+                              animate="show"
                               className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all duration-300 shadow-md ${
                                 selectedOptions[currentQuestionNumber - 1] ===
                                 index
@@ -205,7 +217,7 @@ const MCQAssessment = () => {
                               <span className="text-md leading-relaxed break-words whitespace-normal max-w-[90%] text-lg p-2">
                                 {option.option}
                               </span>
-                            </label>
+                            </motion.label>
                           </li>
                         )
                       )}
@@ -222,26 +234,41 @@ const MCQAssessment = () => {
               <div className="flex flex-row gap-2">
                 {/* Submit or Finish Button */}
                 {currentQuestionNumber > 1 && (
-                  <button
+                  <motion.button
+                  variants={fadeIn("center", "", 0.25, 0.25)}
+                  whileHover={{ scale: 1.005 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial="hidden"
+                  animate="show"
                     className="w-[6rem] bg-myColor-secondary flex justify-center items-center text-white px-6 py-2 rounded-md font-medium transition-transform duration-300 transform hover:scale-105 hover:bg-myColor-dark focus:outline-none focus:ring-2 focus:ring-myColor-light shadow-lg"
                     onClick={() =>
                       setCurrentQuestionNumber((prev) => Math.max(prev - 1, 1))
                     }
                   >
                     Previous
-                  </button>
+                  </motion.button>
                 )}
 
                 {currentQuestionNumber === assessmentData.length ? (
-                  <button
+                  <motion.button
+                  variants={fadeIn("center", "", 0.25, 0.25)}
+                  whileHover={{ scale: 1.005 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial="hidden"
+                  animate="show"
                     className="w-[6rem] bg-myColor-error flex justify-center items-center text-white px-6 py-2 rounded-md font-medium transition-transform duration-300 transform hover:scale-105 hover:bg-myColor-success focus:outline-none  focus:ring-myColor-light shadow-lg"
                     onClick={submitAnswers}
                   >
                     Finish
-                  </button>
+                  </motion.button>
                 ) : (
-                  <button
-                    className="w-[6rem] bg-myColor-secondary flex justify-center items-center text-white px-6 py-2 rounded-md font-medium transition-transform duration-300 transform hover:scale-105 hover:bg-myColor-dark focus:outline-none focus:ring-2 focus:ring-myColor-light shadow-lg"
+                  <motion.button
+                  variants={fadeIn("center", "", 0.25, 0.25)}
+                  whileHover={{ scale: 1.005 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial="hidden"
+                  animate="show"
+                    className="w-[6rem] bg-myColor-secondary flex justify-center items-center text-white px-6 py-2 rounded-md font-medium transition-transform duration-300 transform hover:scale-105 hover:bg-myColor-dark focus:outline-none focus:ring focus:ring-myColor-light shadow-lg"
                     onClick={() =>
                       setCurrentQuestionNumber((prev) =>
                         Math.min(prev + 1, assessmentData.length)
@@ -249,7 +276,7 @@ const MCQAssessment = () => {
                     }
                   >
                     Next
-                  </button>
+                  </motion.button>
                 )}
               </div>
             </div>

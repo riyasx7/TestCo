@@ -74,16 +74,16 @@ const ProblemStatement = ({ testCasesNumber, handleNumTestCasesChange, questionN
         <div className="flex flex-row justify-between items-center rounded-lg">
           <label
             htmlFor="test-cases"
-            className="sm:w-7/12 md:w-6/12 text-myColor-secondary font-semibold text-lg bg-myColor-warning"
+            className="text-myColor-secondary font-semibold text-lg"
           >
-            Problem Statement {questionNumber+1} : Test Cases
+            Problem Statement {questionNumber} : Test Cases
           </label>
           <select
             id={`test-cases-number-${questionNumber}`}
             name={`test-cases-number-${questionNumber}`}
             value={testCasesNumber}
             onChange={(e) => handleNumTestCasesChange(e, questionNumber)}
-            className="sm:w-5/12 md:w-6/12 lg:w-[20rem] bg-white text-myColor-primary border border-myColor-medium rounded-lg p-2 focus:outline-none focus:ring-1 focus:ring-myColor-medium transition-all cursor-pointer"
+            className="w-[20rem] bg-white text-myColor-primary border border-myColor-medium rounded-lg p-2 focus:outline-none focus:ring-1 focus:ring-myColor-medium transition-all cursor-pointer"
           >
             <option value="">--Select number of test cases--</option>
             <option value="1">1</option>
@@ -172,13 +172,13 @@ const CodingAssessment = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="overflow-y-auto sm:max-h-[35rem] md:max-h-[35rem] lg:max-h-[40rem] scrollbar-hide flex flex-col gap-2 rounded-lg">
+      <div className="overflow-y-auto max-h-[40rem] scrollbar-hide flex flex-col gap-2 rounded-lg">
         {/* Title Section */}
-        <div className="w-full flex flex-col lg:flex-row justify-between gap-2 ">
-          <div className="w-full lg:w-[50rem] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-2 p-4 bg-myColor-light rounded-lg">
+        <div className="w-full flex flex-row justify-between gap-2 ">
+          <div className="w-[50rem] flex flex-row justify-between items-center gap-2 p-4 bg-myColor-light rounded-lg">
             <label
               htmlFor="assessment-title"
-              className="lg:8/12 text-myColor-secondary font-medium"
+              className="text-myColor-secondary font-medium"
             >
               Assessment Title
             </label>
@@ -186,15 +186,15 @@ const CodingAssessment = () => {
               type="text"
               placeholder="Enter assessment title"
               id="assessment-title"
-              className="w-full lg:w-8/12 px-4 py-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
+              className="w-9/12 px-4 py-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
             />
           </div>
 
           {/* Number of Questions */}
-          <div className="w-full lg:w-[50rem] flex flex-col lg:flex-row justify-between items-start lg:items-center p-4 bg-myColor-light rounded-lg">
+          <div className="w-[50rem] flex flex-row justify-between items-center p-4 bg-myColor-light rounded-lg">
             <label
               htmlFor="num-questions"
-              className="lg:w-4/12 text-myColor-secondary font-medium"
+              className="text-myColor-secondary font-medium"
             >
               Number of Questions
             </label>
@@ -202,7 +202,7 @@ const CodingAssessment = () => {
               id="num-questions"
               value={numQuestions}
               onChange={handleNumQuestionsChange}
-              className=" w-full lg:w-8/12 cursor-pointer  p-2 text-myColor-primary bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
+              className="cursor-pointer w-[20rem] p-2 text-myColor-primary bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
             >
               {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
                 <option key={num} value={num}>
@@ -210,64 +210,6 @@ const CodingAssessment = () => {
                 </option>
               ))}
             </select>
-          </div>
-        </div>
-
-        {/* Scheduling Section */}
-        <div
-          id="scheduling-section"
-          className="bg-myColor-light rounded-lg p-4 gap-4"
-        >
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-row justify-between items-center gap-4">
-              {/* Start Date & Time */}
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  Start Date
-                </label>
-                <input
-                  type="date"
-                  id="start-date"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  Start Time
-                </label>
-                <input
-                  type="time"
-                  id="start-time"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-row justify-between items-center gap-4 ">
-              {/* End Date & Time */}
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  End Date
-                </label>
-                <input
-                  type="date"
-                  id="end-date"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  End Time
-                </label>
-                <input
-                  type="time"
-                  id="end-time"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-            </div>
           </div>
         </div>
 

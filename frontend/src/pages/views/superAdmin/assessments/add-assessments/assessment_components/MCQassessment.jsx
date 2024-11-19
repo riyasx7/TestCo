@@ -80,17 +80,17 @@ const MCQAssessment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!validateForm()) {
       return;
     }
-
+  
     const title = document.getElementById("assessment-title")?.value.trim();
     if (!title) {
       alert("Please provide a title for the assessment.");
       return;
     }
-
+  
     // Prepare assessment data with correctness status
     const assessmentData = {
       assessmentType: "MCQ",
@@ -104,9 +104,10 @@ const MCQAssessment = () => {
         })),
       })),
     };
-
+    
+  
     console.log("Submitting assessment:", assessmentData);
-
+  
     try {
       const response = await fetch(backendApi.createMCQAssessment.url, {
         method: backendApi.createMCQAssessment.method,
@@ -115,9 +116,9 @@ const MCQAssessment = () => {
         },
         body: JSON.stringify(assessmentData),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         alert("Assessment created successfully!");
         // navigate(`/instructor/assessments`);
@@ -129,15 +130,16 @@ const MCQAssessment = () => {
       alert("An error occurred while creating the assessment.");
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="overflow-y-auto sm:max-h-[35rem] md:max-h-[35rem] lg:max-h-[40rem] scrollbar-hide flex flex-col gap-2 rounded-lg">
+      <div className="overflow-y-auto max-h-[40rem] scrollbar-hide flex flex-col gap-2 rounded-lg">
         {/* Title Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center rounded-lg bg-myColor-light p-4">
+        <div className="flex flex-row justify-between items-center gap-2">
+          <div className="w-full flex flex-row justify-between items-center rounded-lg bg-myColor-light p-4">
             <label
-              className="w-full lg:w-4/12 text-myColor-secondary font-medium "
+              className="w-3/12 text-myColor-secondary font-medium"
               htmlFor="assessment-title"
             >
               Assessment Title
@@ -146,13 +148,13 @@ const MCQAssessment = () => {
               type="text"
               placeholder="Enter assessment title"
               id="assessment-title"
-              className="w-full lg:w-9/12 px-4 py-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
+              className="w-9/12 px-4 py-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
             />
           </div>
-          <div className="w-full flex sm:flex-col lg:flex-row justify-between items-center rounded-lg bg-myColor-light p-4">
+          <div className="w-full flex flex-row justify-between items-center rounded-lg bg-myColor-light p-4">
             <label
               htmlFor="num-questions"
-              className="w-full lg:w-4/12 text-myColor-secondary font-semibold"
+              className="text-myColor-secondary font-semibold"
             >
               Number of Questions:
             </label>
@@ -160,7 +162,7 @@ const MCQAssessment = () => {
               id="num-questions"
               value={numQuestions}
               onChange={handleNumQuestionsChange}
-              className="cursor-pointer w-full  lg:w-9/12 p-2 text-myColor-primary bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary transition-all"
+              className="cursor-pointer w-[20rem] p-2 text-myColor-primary bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary transition-all"
             >
               {Array.from({ length: 50 }, (_, i) => i + 1).map((num) => (
                 <option key={num} value={num}>
@@ -168,64 +170,6 @@ const MCQAssessment = () => {
                 </option>
               ))}
             </select>
-          </div>
-        </div>
-
-        {/* Scheduling Section */}
-        <div
-          id="scheduling-section"
-          className="bg-myColor-light rounded-lg p-4 gap-4"
-        >
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-row justify-between items-center gap-4">
-              {/* Start Date & Time */}
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  Start Date
-                </label>
-                <input
-                  type="date"
-                  id="start-date"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  Start Time
-                </label>
-                <input
-                  type="time"
-                  id="start-time"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-row justify-between items-center gap-4 ">
-              {/* End Date & Time */}
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  End Date
-                </label>
-                <input
-                  type="date"
-                  id="end-date"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-
-              <div className="flex flex-col w-full">
-                <label className="text-myColor-secondary font-semibold">
-                  End Time
-                </label>
-                <input
-                  type="time"
-                  id="end-time"
-                  className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
-                />
-              </div>
-            </div>
           </div>
         </div>
 
@@ -256,7 +200,7 @@ const MCQAssessment = () => {
                       key={optIndex}
                       className="flex flex-row items-center gap-3 bg-myColor-extraLight p-3 rounded-lg"
                     >
-                      <label className="sm:3/12 md:w-2/12 lg:w-1/12 text-myColor-secondary font-medium bg-myColor-warning">
+                      <label className="w-1/12 text-myColor-secondary font-medium">
                         Option {optIndex + 1}:
                       </label>
                       <input
@@ -266,18 +210,14 @@ const MCQAssessment = () => {
                         onChange={(e) =>
                           handleOptionChange(qIndex, optIndex, e.target.value)
                         }
-                        className="sm:w-7/12 md:w-8/12 lg:w-10/12 p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
+                        className="w-full p-2 text-myColor-dark bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary"
                       />
                       <select
                         value={opt.isCorrect ? "true" : "false"}
                         onChange={(e) =>
-                          handleOptionCorrectnessChange(
-                            qIndex,
-                            optIndex,
-                            e.target.value
-                          )
+                          handleOptionCorrectnessChange(qIndex, optIndex, e.target.value)
                         }
-                        className="sm:w-2/12 md:w-2/12 lg:1/12 cursor-pointer p-2 text-myColor-primary bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary transition-all"
+                        className="cursor-pointer p-2 text-myColor-primary bg-white border border-myColor-medium rounded-lg focus:outline-none focus:ring-1 focus:ring-myColor-primary transition-all"
                       >
                         <option value="false">Incorrect</option>
                         <option value="true">Correct</option>

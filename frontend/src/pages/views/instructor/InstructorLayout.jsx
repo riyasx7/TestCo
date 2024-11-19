@@ -1,103 +1,58 @@
-import { useState } from "react"; // Import useState
-// import { useSelector } from "react-redux";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { styles } from "../../../styles.js";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/motion.js";
 
 const InstructorLayout = () => {
-  // const user = useSelector((state) => state?.user?.user);
-  // console.log("check: ", user);
-
-  const [activeItem, setActiveItem] = useState("home"); // State to track active item
+  const [activeItem, setActiveItem] = useState("home");
 
   return (
-    <section className="w-full h-[100vh] flex">
-      <aside className="w-[15vw] flex flex-col items-center bg-myColor-dark shadow-myColor-medium shadow-lg">
-        <div className="w-full h-20 flex flex-col justify-center items-center border-b border-b-myColor-medium ">
-          <p className="text-myColor-medium text-2xl">TestCo</p>
+    <section className="w-[100vw] h-[100vh] flex md:flex-row">
+      {/* Sidebar */}
+      <aside className="w-full h-[100vh] sm:w-[25vw] md:w-[20vw] lg:w-[15vw] flex flex-col items-center bg-myColor-dark shadow-myColor-medium shadow-lg">
+        {/* Header */}
+        <div className="w-full h-20 flex justify-center items-center border-b border-b-myColor-medium">
+          <p className="text-myColor-medium text-xl md:text-2xl">TestCo</p>
         </div>
 
         {/* Navigation Menu */}
-        <div className="mt-5 w-full">
-          <nav className="flex flex-col justify-center items-center gap-2">
-            <Link to="/instructor/home">
-              <div
-                className={`cursor-pointer w-[12rem] h-[3rem] flex pl-5 items-center rounded-lg text-myColor-medium hover:text-myColor-light  bg-myColor-primary hover:bg-myColor-secondary  transition duration-200 ease-in-out text-center ${
-                  activeItem === "home" ? "bg-myColor-extraLight" : ""
-                }`}
-                onClick={() => setActiveItem("home")} // Set active item on click
+        <nav className="mt-5 w-full flex flex-col items-center gap-2">
+          {["Home", "My Students", "Assessments", "Settings", "My Account"].map(
+            (item) => (
+              <Link
+                to={`/instructor/${item === "home" ? "" : item}`}
+                key={item}
               >
-                <p
-                  className={`${styles.montserratRegular} text-md text-left`}
+                <motion.div
+                  variants={fadeIn("center", "", 0.5, 0.25)}
+                  initial="hidden"
+                  animate="show"
+                  whileTap={{scale: 0.95}}
+                  whileHover={{scale: 1.025}}
+                  transition={{
+                    duration: 0.02,  
+                    ease: "easeInOut", 
+                  }}
+                  className={`cursor-pointer w-[90%] sm:w-[9rem] md:w-[9rem] lg:w-[12rem] h-[3rem] flex pl-5 items-center rounded-lg text-myColor-medium hover:text-myColor-light bg-myColor-primary hover:bg-myColor-secondary transition duration-200 ease-in-out text-center ${
+                    activeItem === item ? "bg-myColor-extraLight" : ""
+                  }`}
+                  onClick={() => setActiveItem(item)}
                 >
-                  Home
-                </p>
-              </div>
-            </Link>
-
-            <Link to="/instructor/students-details">
-              <div
-                className={`cursor-pointer w-[12rem] h-[3rem] flex pl-5 items-center rounded-lg   text-myColor-medium hover:text-myColor-light  bg-myColor-primary hover:bg-myColor-secondary transition duration-200 ease-in-out text-center ${
-                  activeItem === "mystudents" ? "bg-myColor-extraLight" : ""
-                }`}
-                onClick={() => setActiveItem("mystudents")} // Set active item on click
-              >
-                <p
-                  className={`${styles.montserratRegular} text-md text-left`}
-                >
-                  My Students
-                </p>
-              </div>
-            </Link>
-
-            <Link to="/instructor/assessments">
-              <div
-                className={`cursor-pointer w-[12rem] h-[3rem] flex pl-5 items-center rounded-lg  text-myColor-medium hover:text-myColor-light  bg-myColor-primary hover:bg-myColor-secondary transition duration-200 ease-in-out text-center ${
-                  activeItem === "assessments`" ? "bg-myColor-extraLight" : ""
-                }`}
-                onClick={() => setActiveItem("assessments")} // Set active item on click
-              >
-                <p
-                  className={`${styles.montserratRegular} text-md text-left`}
-                >
-                  Assessments
-                </p>
-              </div>
-            </Link>
-
-            <Link to="/instructor/settings">
-              <div
-                className={`cursor-pointer w-[12rem] h-[3rem] flex pl-5 items-center rounded-lg  text-myColor-medium hover:text-myColor-light  bg-myColor-primary hover:bg-myColor-secondary transition duration-200 ease-in-out text-center ${
-                  activeItem === "myaccount`" ? "bg-myColor-extraLight" : ""
-                }`}
-                onClick={() => setActiveItem("settings")} // Set active item on click
-              >
-                <p
-                  className={`${styles.montserratRegular} text-md text-left`}
-                >
-                  Settings
-                </p>
-              </div>
-            </Link>
-
-            <Link to="/instructor/myaccount">
-              <div
-                className={`cursor-pointer w-[12rem] h-[3rem] flex pl-5 items-center rounded-lg  text-myColor-medium hover:text-myColor-light  bg-myColor-primary hover:bg-myColor-secondary transition duration-200 ease-in-out text-center ${
-                  activeItem === "myaccount`" ? "bg-myColor-extraLight" : ""
-                }`}
-                onClick={() => setActiveItem("myaccount")} // Set active item on click
-              >
-                <p
-                  className={`${styles.montserratRegular} text-md text-left`}
-                >
-                  My Account
-                </p>
-              </div>
-            </Link>
-          </nav>
-        </div>
+                  <p
+                    className={`${styles.montserratRegular} text-sm md:text-md text-left`}
+                  >
+                    {item}
+                  </p>
+                </motion.div>
+              </Link>
+            )
+          )}
+        </nav>
       </aside>
 
-      <main className="w-[85vw] p-4 bg-myColor-primary">
+      {/* Main Content */}
+      <main className="w-full sm:w-[75vw] md:w-[80vw] lg:w-[85vw] p-4 bg-myColor-primary">
         <Outlet />
       </main>
     </section>
