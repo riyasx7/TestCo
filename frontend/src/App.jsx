@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { setUserDetails } from "./store/userSlice.js";
 import Context, { AppProvider } from "./context/index.jsx";
 
+import HomePage from "./pages/home_page/HomePage.jsx";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SignInPage from "./pages/initial_pages/SignInPage.jsx";
@@ -21,6 +22,7 @@ import SingleStudentDetails from "./pages/views/instructor/students-details/Sing
 import AddNewAssement from "./pages/views/instructor/assessments/add-assessments/AddNewAssessment.jsx";
 import AssessmentsType from "./pages/views/instructor/assessments/AssessmentsType.jsx";
 import MCQAssessment from "./pages/views/student/assessment-pages/MCQAssessment.jsx";
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const App = () => {
   }, [isAuthenticated]);
 
   const location = useLocation();
-  const hideHeaderFooterRoutes = ["/sign-in", "/sign-up", "/forgot-password"];
+  const hideHeaderFooterRoutes = ["*"];
   const shouldHideHeaderFooter = hideHeaderFooterRoutes.includes(
     location.pathname
   );
@@ -58,6 +60,7 @@ const App = () => {
       {/* {!shouldHideHeaderFooter && <Header />} */}
       <main>
         <Routes>
+          <Route path="/" element={<HomePage/>}/>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
