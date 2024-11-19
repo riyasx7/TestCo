@@ -96,232 +96,231 @@ const CodingAssessment = () => {
   };
 
   return (
-    <div className="flex flex-row gap-2 p-4 h-screen w-screen bg-myColor-dark">
+    <div className="flex flex-row gap-2 px-3 py-4 h-[100vh] w-[100vw] bg-myColor-dark">
       {/* Left Sidebar (problem statement) */}
-      <div className="w-[3rem] rounded-lg p-1 bg-myColor-light flex flex-col gap-1">
+      <div className="w-[5%] sm:w-[3%] md:w-[3%] lg:w-[4%] rounded-lg p-1 bg-myColor-light flex flex-col justify-start items-center gap-1">
         {assessmentData?.length > 0 ? (
           assessmentData.map((assessment, index) => (
             <button
               key={index}
-              className={`w-[40px] h-[40px] flex justify-center items-center text-white  rounded-lg cursor-pointer hover:bg-myColor-dark
-              ${
-                currentQuestionNumber - 1 === index
-                  ? "bg-myColor-dark"
-                  : "bg-myColor-secondary"
-              }`}
-              onClick={() => setCurrentQuestionNumber(index + 1)} // Updated to set current question
+              className={`w-[80%] md:w-[80%] lg:w-[90%] aspect-square flex justify-center items-center text-white rounded-lg cursor-pointer hover:bg-myColor-dark
+          ${
+            currentQuestionNumber - 1 === index
+              ? "bg-myColor-dark"
+              : "bg-myColor-secondary"
+          }`}
+              onClick={() => setCurrentQuestionNumber(index + 1)}
             >
-              <p>{index + 1}</p>
+              <p className="text-sm lg:text-base">{index + 1}</p>
             </button>
           ))
         ) : (
-          <p className="w-[40px] h-[40px] flex justify-center items-center text-white bg-myColor-secondary rounded-lg cursor-pointer hover:bg-myColor-dark">
+          <p className="aspect-square flex justify-center items-center text-white bg-myColor-secondary rounded-lg cursor-pointer hover:bg-myColor-dark">
             nil
           </p>
         )}
       </div>
 
       {/* Main Content Area */}
-      <div className="flex flex-row justify-center items-center gap-2 w-full h-full bg-myColor-dark text-gray-200 overflow-hidden">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-2 w-full h-full bg-myColor-dark text-gray-200 overflow-hidden">
         {/* Left Section: Problem Statement */}
         <div
-          className="resize-x overflow-auto scrollbar-hide h-full max-w-full flex flex-col gap-2 p-2 bg-myColor-primary rounded-lg border border-myColor-secondary hover:border-myColor-medium"
-          style={{
-            minWidth: "20rem",
-            maxWidth: "70rem",
-            flexGrow: 1,
-            width: "75rem",
-          }}
+          className="sm:resize-y sm:min-h-30 md:resize-x  lg:resize-x w-full md:w-2/5 lg:w-6/12 overflow-auto scrollbar-hide h-full flex flex-col gap-2 p-2 bg-myColor-primary rounded-lg border border-myColor-secondary hover:border-myColor-medium
+  "
+          style={{ minWidth: "3/12", flexGrow: "2" }}
         >
           <div className="h-full p-4 bg-myColor-dark text-white rounded-lg border border-myColor-secondary">
+            {/* Header */}
             <div className="border-b border-b-gray-400">
-              <h2 className="text-start font-bold text-2xl mb-2">
+              <h2 className="text-start font-bold text-lg md:text-2xl mb-2">
                 Problem Statement
               </h2>
             </div>
 
-            <div className="flex flex-row border-b border-b-gray-400 py-5 w-full">
-              <p className="text-md leading-relaxed break-words whitespace-normal max-w-full">
-                {assessmentData?.[currentQuestionNumber - 1]
-                  ?.problemStatement || "loading..."}
-              </p>
-            </div>
+            <div className="overflow-auto scrollbar-hide">
+              {/* Problem Statement */}
+              <div className="flex flex-row border-b border-b-gray-400 py-5 w-full">
+                <p className="text-sm md:text-md leading-relaxed break-words whitespace-normal max-w-full">
+                  {assessmentData?.[currentQuestionNumber - 1]
+                    ?.problemStatement || "loading..."}
+                </p>
+              </div>
 
-            <div className="flex flex-row py-5 w-full">
-              <p className="text-md leading-relaxed break-words whitespace-normal max-w-full">
-                {assessmentData?.[currentQuestionNumber - 1]?.description ||
-                  "Additional details unavailable."}
-              </p>
+              {/* Description */}
+              <div className="flex flex-row py-5 w-full">
+                <p className="text-sm md:text-md leading-relaxed break-words whitespace-normal max-w-full">
+                  {assessmentData?.[currentQuestionNumber - 1]?.description ||
+                    "Additional details unavailable."}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Right Section: Code Editor and Test Cases */}
         <div
-          className="flex flex-col w-full h-full max-w-full gap-2"
-          style={{ minWidth: "30rem", maxWidth: "70rem", flexGrow: 2 }}
+          className="flex flex-col w-full h-full gap-2
+      md:w-[60%] lg:w-[65%]"
         >
           {/* Code Editor */}
           <div
-            className="resize-y overflow-auto flex flex-col p-4 bg-myColor-primary rounded-lg gap-5 border border-myColor-secondary hover:border-myColor-medium"
-            style={{ minHeight: "30%", maxHeight: "80%", height: "50%" }}
+            className="resize-y overflow-auto flex flex-col p-2 bg-myColor-primary rounded-lg gap-5 border border-myColor-secondary hover:border-myColor-medium
+  h-[60%] lg:h-[70%]"
+            style={{ minHeight: "45%", maxHeight: "70%" }}
           >
-            <div className="flex justify-between items-center">
-              <h1 className="text-lg font-semibold text-gray-200">
-                Code Editor
-              </h1>
-              <div className="flex flex-row items-center">
-                <label className="mr-4 text-gray-300">Language:</label>
-                <select
-                  className="px-3 py-2 bg-myColor-medium text-myColor-dark rounded-lg focus:outline-none cursor-pointer hover:bg-myColor-light"
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value)}
-                >
-                  {languages.map(({ name, value }) => (
-                    <option
-                      key={value}
-                      value={value}
-                      className="bg-gray-700 text-gray-200"
-                    >
-                      {name}
-                    </option>
-                  ))}
-                </select>
+            <div className="w-full h-full p-3 flex  flex-col sm:gap-2 mg:gap-2 lg:gap-2 bg-myColor-dark border border-myColor-secondary rounded-lg">
+              <div className="flex justify-between items-center">
+                <h1 className="text-base md:text-lg font-semibold text-gray-200">
+                  Code Editor
+                </h1>
+                <div className="flex flex-row items-center gap-2">
+                  <label className="mr-4 text-gray-300">Language:</label>
+                  <select
+                    className="px-3 py-2 bg-myColor-medium text-myColor-dark rounded-lg focus:outline-none cursor-pointer hover:bg-myColor-light"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                  >
+                    {languages.map(({ name, value }) => (
+                      <option
+                        key={value}
+                        value={value}
+                        className="bg-gray-700 text-gray-200"
+                      >
+                        {name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div
-              className="rounded-lg overflow-scroll custom-scrollbar bg-gray-800 border border-gray-600"
-              style={{ height: "85%", width: "100%" }}
-            >
-              <CodeMirror
-                value={code}
-                extensions={[
-                  languageExtensions[language],
-                  keymap.of(defaultKeymap),
-                ]}
-                theme={oneDark}
-                onChange={(value) => setCode(value)}
-                height="100%"
-                width="100%"
-              />
-            </div>
+              <div
+                className="rounded-lg overflow-scroll custom-scrollbar bg-gray-800 border border-gray-600"
+                style={{ height: "80%",  width: "100%" }}
 
-            <div className="h-[10%] flex flex-row justify-start items-center gap-5">
-              <button className="h-[40px] w-[15%] bg-myColor-secondary text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-accent hover:text-myColor-white">
-                Run
-              </button>
-              <button
-                className="h-[40px] w-[15%] bg-myColor-secondary text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-success hover:text-myColor-white"
-                onClick={submitCode}
-                disabled={isSubmitting} // Disable button during submission
               >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </button>
+                <CodeMirror
+                  value={code}
+                  extensions={[
+                    languageExtensions[language],
+                    keymap.of(defaultKeymap),
+                  ]}
+                  theme={oneDark}
+                  onChange={(value) => setCode(value)}
+                  height=""
+                  width="100%"
+                />
+              </div>
+
+              <div className="flex flex-row justify-start items-center gap-2 h-[10%]">
+                <button className="h-[5vh] sm:h-[25px] sm:w-[15%] md:h-[40px] w-[30%] md:w-[15%] bg-myColor-secondary text-sm text-md  text-gray-200 rounded-lg cursor-pointer hover:bg-myColor-go hover:text-myColor-white">
+                  Run
+                </button>
+                <button
+                  className="h-[5vh] sm:h-[25px] sm:w-[15%] md:h-[40px] w-[30%] md:w-[15%] bg-myColor-secondary text-gray-200 text-sm text-md rounded-lg cursor-pointer hover:bg-myColor-success hover:text-myColor-white"
+                  onClick={submitCode}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </button>
+              </div>
             </div>
           </div>
 
           {/* Test Cases */}
           <div
-      className="w-full bg-myColor-primary rounded-lg px-4  border border-myColor-secondary hover:border-myColor-medium"
-      style={{
-        flexGrow: 1,
-        minHeight: "10rem",
-        maxHeight: "50vh",
-        height: "20rem",
-      }}
-    >
-      <div className="h-[4rem] flex flex-row justify-between items-center p-1">
-        <h2 className="text-gray-200 text-xl font-semibold">
-          Test Cases
-        </h2>
-
-        {/* Render buttons for selecting test cases */}
-        <div className="flex flex-row gap-2">
-          {assessmentData?.[currentQuestionNumber - 1]?.testCases?.map(
-            (_, index) => (
-              <button
-                key={index}
-                className={`w-[40px] h-[40px] flex justify-center items-center text-white rounded-lg cursor-pointer hover:bg-myColor-dark
-                  ${CurrentTestCaseNumber - 1 === index
-                    ? "bg-myColor-dark"
-                    : "bg-myColor-secondary"
-                }`}
-                onClick={() => setCurrentTestCaseNumber(index + 1)} // Update the current test case number on click
-              >
-                <p>{index + 1}</p>
-              </button>
-            )
-          )}
+  className="
+    w-full 
+    bg-myColor-primary 
+    rounded-lg 
+    px-4  
+    border border-myColor-secondary 
+    hover:border-myColor-medium
+    h-[55%] sm:h-[45%] md:h-[40%] lg:h-[30%]
+  "
+  style={{
+    flexGrow: 2,
+    maxHeight: "55%",
+  }}
+>
+  <div className="h-[4rem] w-full flex flex-row justify-between items-center p-1">
+    <h2 className="text-gray-200 text-lg font-semibold">Test Cases</h2>
+    <div className="flex flex-row gap-2 w-[5%]">
+      {assessmentData?.[currentQuestionNumber - 1]?.testCases?.map((_, index) => (
+        <button
+          key={index}
+          className={`
+            flex 
+            justify-center 
+            items-center 
+            text-white 
+            rounded-lg 
+            cursor-pointer 
+            hover:bg-myColor-dark 
+            ${
+              CurrentTestCaseNumber - 1 === index
+                ? "bg-myColor-dark"
+                : "bg-myColor-secondary"
+            }
+            w-full
+            h-[40px] sm:h-[35px] md:h-[40px] lg:h-[40px]
+          `}
+          onClick={() => setCurrentTestCaseNumber(index + 1)}
+        >
+          <p>{index + 1}</p>
+        </button>
+      ))}
+    </div>
+  </div>
+  <div
+    id="test-case-container"
+    className="
+      overflow-auto scrollbar-hide
+      p-4 
+      w-full 
+      rounded-lg 
+      bg-myColor-dark 
+      flex flex-col 
+      gap-2 
+      lg:h-[calc(100%-5rem)] sm:h-[calc(90%-4rem)] md:h-[85%] 
+    "
+  >
+    <div className="flex flex-row justify-between items-center pb-2 border-b border-b-myColor-medium">
+      <p>Test Case {CurrentTestCaseNumber}</p>
+      <p>Status:</p>
+    </div>
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
+        <label htmlFor="test-case-inputs">Inputs</label>
+        <div
+          id="test-case-inputs"
+          className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
+        >
+          <pre>inputs</pre>
         </div>
       </div>
-
-      {/* Render the selected test case */}
-      {assessmentData?.[currentQuestionNumber - 1]?.testCases?.length > 0 ? (
-        <div className="bg-myColor-dark border border-myColor-secondary text-gray-200 p-4 rounded-lg border my-2">
-          <div className="flex flex-row justify-between items-center">
-          <h3 className="font-semibold mb-3 ">
-            Test Case {CurrentTestCaseNumber}
-          </h3>
-          <p>Status: {}</p>
-          </div>
-          
-          <div className="overflow-y-auto scrollbar-hide h-[26vh]">
-            {/* Inputs Section */}
-          <div className="py-3 flex flex-col gap-2">
-            <label htmlFor="inputs" className="text-sm font-semibold">
-              Inputs
-            </label>
-            <div className="h-[3rem] flex justify-start items-center rounded-lg bg-myColor-extraLight p-2" id="inputs">
-              <pre className="text-myColor-dark text-sm">
-                {
-                  assessmentData[currentQuestionNumber - 1].testCases[
-                    CurrentTestCaseNumber - 1
-                  ]?.input
-                }
-              </pre>
-            </div>
-          </div>
-
-          {/* Expected Output Section */}
-          <div className="py-3 flex flex-col gap-2">
-            <label htmlFor="expectedOutput" className="text-sm font-semibold">
-              Expected Output
-            </label>
-            <div className="h-[3rem] flex justify-start items-center rounded-lg bg-myColor-extraLight p-2" id="expectedOutput">
-              <pre className="text-myColor-dark text-sm">
-                {
-                  assessmentData[currentQuestionNumber - 1].testCases[
-                    CurrentTestCaseNumber - 1
-                  ]?.expectedOutput
-                }
-              </pre>
-            </div>
-          </div>
-
-          <div className="py-3 flex flex-col gap-2">
-            <label htmlFor="expectedOutput" className="text-sm font-semibold">
-              Actual Output
-            </label>
-            <div className="h-[3rem] flex justify-start items-center rounded-lg bg-myColor-extraLight p-2" id="expectedOutput">
-              <pre className="text-myColor-dark text-sm">
-                {/* {
-                  assessmentData[currentQuestionNumber - 1].testCases[
-                    CurrentTestCaseNumber - 1
-                  ]?.expectedOutput
-                } */} acutal output
-              </pre>
-            </div>
-          </div>
-          </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="test-case-expected-outputs">Expected Output</label>
+        <div
+          id="test-case-expected-outputs"
+          className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
+        >
+          <pre>expected output</pre>
         </div>
-      ) : (
-        <p className="text-gray-400 text-center py-2">
-          No test cases available for this question.
-        </p>
-      )}
+      </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="test-case-actual-output">Actual Output</label>
+        <div
+          id="test-case-actual-output"
+          className="p-2 w-full bg-myColor-medium border-2 border-myColor-extraLight rounded-lg text-myColor-dark"
+        >
+          <pre>actual output</pre>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
+</div>
+
+        </div>
       </div>
     </div>
   );
