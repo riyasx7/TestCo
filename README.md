@@ -33,8 +33,41 @@ TestCo is an advanced online assessment platform designed specifically for stude
 - **Authentication**: JWT-based secure authentication
 - **Deployment**: Dockerized environment for scalable deployment
 
+
 ## Installation
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/testco.git
+
+## Project Setup Guide
+
+### Navigate to the project directory
+   ```bash
+      cd testco
+```
+### Install dependencies and run the backend server:
+   ```bash
+      cd backend
+   ```
+   ```bash
+      npm install
+   ```
+   ```bash
+      npm run server
+   ```
+### Install dependencies and run the frontend :
+   ```bash
+      cd ../frontend
+   ```
+   ```bash
+      npm install
+   ```
+   ```bash
+      npm start
+   ```
+### Open your browser and go to http://localhost:3000 to access the platform. 
+This keeps everything compact and to the point. Let me know if you need further assistance!
+
+
+
